@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Registration Flow</title>
+  <style>
+    /* General styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    header {
+      background: #4CAF50;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    .section {
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 1200px;
+    }
+    h1, h2 {
+      margin-bottom: 15px;
+    }
+
+    /* Flowchart container */
+    .flowchart {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .flowchart div {
+      border: 2px solid #ccc;
+      padding: 10px 20px;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      width: fit-content;
+      text-align: center;
+      cursor: pointer;
+    }
+    .arrows {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0 auto;
+    }
+
+    /* Dual-column container for "Supermarket" & "Marketing Campaign" */
+    .dual-container {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .dual-container div {
+      flex: 1 1 250px; /* Minimum size for smaller devices */
+      max-width: 300px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #f1f1f1;
+    }
+
+    /* Pop-up Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0,0,0);
+      background-color: rgba(0,0,0,0.4);
+      padding-top: 60px;
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 600px;
+      border-radius: 8px;
+    }
+    .close {
+      color: #aaa;
+      font-size: 28px;
+      font-weight: bold;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+    }
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* Responsiveness */
+    @media (max-width: 768px) { /* Tablet & smaller devices */
+      .dual-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 480px) { /* Mobile phones */
+      header {
+        padding: 15px;
+      }
+      .section {
+        padding: 10px;
+      }
+      .flowchart div {
+        font-size: 14px;
+        padding: 8px 15px;
+      }
+      h1, h2 {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Product Registration Process</h1>
+  <p>Step-by-step guidance to bring your product to the market.</p>
+</header>
+
+<section class="section">
+  <h2>Registration Flow</h2>
+  <div class="flowchart">
+    <div id="factoryReg">Factory Registration</div>
+    <div class="arrows">↓</div>
+    <div id="halalCert">Halal Certificate</div>
+    <div class="arrows">↓</div>
+    <div id="bpomReg">BPOM Registration</div>
+    <div class="arrows">↓</div>
+    <div class="dual-container">
+      <div id="supermarketReg">Supermarket Registration</div>
+      <div id="marketingCampaign">Marketing Campaign</div>
+    </div>
+    <div class="arrows">↓</div>
+    <div>Selling</div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>FAQs</h2>
+  <p><strong>Q: How do I start factory registration?</strong></p>
+  <p>A: Begin by submitting required documents to the relevant authority.</p>
+  <p><strong>Q: What is the validity of the halal certificate?</strong></p>
+  <p>A: It depends on the issuing authority or BPJPH guidelines.</p>
+</section>
+
+<footer>
+  <p>Ready to register your product? <a href="#">Contact us</a> for assistance.</p>
+</footer>
+
+<!-- Pop-up Modals -->
+<div id="factoryModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeFactory">&times;</span>
+    <h2>The Factory has been approved and registered with the SIMREK Indonesia – KESMAVET system</h2>
+  </div>
+</div>
+
+<div id="halalModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeHalal">&times;</span>
+    <h2>HALAL CERTIFICATE</h2>
+    <p>Every product must have a halal certificate.</p>
+    <p>There are two options for obtaining a halal certificate:</p>
+    <ul>
+      <li>Certification by a foreign halal certification body that has established a Mutual Recognition Agreement (MRA) with BPJPH in Indonesia.</li>
+      <li>Direct certification by BPJPH, which involves an on-site audit of the production facility.</li>
+    </ul>
+    <p>If a halal certificate is obtained through a foreign certification body, the validity period follows the regulations of the respective halal body. If the halal certification is issued directly by BPJPH, the certificate remains valid for a lifetime, provided there are no changes to the ingredients.</p>
+  </div>
+</div>
+
+<div id="bpomModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeBpom">&times;</span>
+    <h2>BPOM REGISTRATION</h2>
+    <p><strong>Required Documents:</strong></p>
+    <ul>
+      <li>Letter of Agreement (signed & stamped by Chamber of Commerce)</li>
+      <li>Health Certificate</li>
+      <li>Artwork</li>
+      <li>Product Specification & Packaging Specification</li>
+      <li>Percentage of Ingredients with a total of 100%</li>
+      <li>Food Safety Certificate (GMP/HACCP/ISO 22000/IFS/BRC)</li>
+      <li>Technical Sheet of Ingredients or MSDS</li>
+      <li>Production Process (Flow Chart)</li>
+      <li>Production Code (meaning) dd/mm/yyyy</li>
+      <li>Product Photo (All Size Available)</li>
+      <li>Product Laboratory Testing</li>
+    </ul>
+    <p>Ensure all conditions are fulfilled based on the applicable standards.</p>
+  </div>
+</div>
+
+<div id="supermarketModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeSupermarket">&times;</span>
+    <h2>SUPERMARKET REGISTRATION</h2>
+    <p>To sell products in supermarkets, there are several requirements:</p>
+    <ul>
+      <li>Paying the registration/listing fee</li>
+      <li>Providing support in the form of promotional subsidies</li>
+    </ul>
+  </div>
+</div>
+
+<div id="marketingModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeMarketing">&times;</span>
+    <h2>MARKETING CAMPAIGN</h2>
+    <p>To enhance product awareness and support sales, marketing campaigns are essential. Common activities include:</p>
+    <ul>
+      <li>Product sampling</li>
+      <li>Cooking demonstrations</li>
+      <li>Cooking classes</li>
+      <li>Product awareness campaigns on social media</li>
+      <li>Collaborations with influencers</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+// Get the modal elements
+var factoryModal = document.getElementById("factoryModal");
+var halalModal = document.getElementById("halalModal");
+var bpomModal = document.getElementById("bpomModal");
+var supermarketModal = document.getElementById("supermarketModal");
+var marketingModal = document.getElementById("marketingModal");
+
+// Get the corresponding buttons
+var factoryReg = document.getElementById("factoryReg");
+var halalCert = document.getElementById("halalCert");
+var bpomReg = document.getElementById("bpomReg");
+var supermarketReg = document.getElementById("supermarketReg");
+var marketingCampaign = document.getElementById("marketingCampaign");
+
+// Get the <span> elements to close modals
+var closeFactory = document.getElementById("closeFactory");
+var closeHalal = document.getElementById("closeHalal");
+var closeBpom = document.getElementById("closeBpom");
+var closeSupermarket = document.getElementById("closeSupermarket");
+var closeMarketing = document.getElementById("closeMarketing");
+
+// Event listeners for opening modals
+factoryReg.onclick = function() { factoryModal.style.display = "block"; };
+halalCert.onclick = function() { halalModal.style.display = "block"; };
+bpomReg.onclick = function() { bpomModal.style.display = "block"; };
+supermarketReg.onclick = function() { supermarketModal.style.display = "block"; };
+marketingCampaign.onclick = function() { marketingModal.style.display = "block"; };
+
+// Event listeners for closing modals
+closeFactory.onclick = function() { factoryModal.style.display = "none"; };
+closeHalal.onclick = function() { halalModal.style.display = "none"; };
+closeBpom.onclick = function() { bpomModal.style.display = "none"; };
+closeSupermarket.onclick = function() { supermarketModal.style.display = "none"; };
+closeMarketing.onclick = function() { marketingModal.style.display = "none"; };
+
+// Click anywhere outside the modal to close it
+window.onclick = function(event) {
+  if (event.target == factoryModal) {
+    factoryModal.style.display = "none";
+  } else if (event.target == halalModal) {
+    halalModal.style.display = "none";
+  } else if (event.target == bpomModal) {
+    bpomModal.style.display = "none";
+  } else if (event.target == supermarketModal) {
+    supermarketModal.style.display = "none";
+  } else if (event.target == marketingModal) {
+    marketingModal.style.display = "none";
+  }
+};
+</script>
+
+</body>
+</html>
